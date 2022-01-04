@@ -9,15 +9,15 @@ export default function Schedule() {
 		);
 	})
 
-	const [episode] = createResource(async (slug) => {
-		return fetch(`https://www.learnwithjason.dev/api/episode/${slug}`).then(res => 
-			res.json(),
-		);
-	});
+	// const [episode] = createResource(async (slug) => {
+	// 	return fetch(`https://www.learnwithjason.dev/api/episode/${slug}`).then(res => 
+	// 		res.json(),
+	// 	);
+	// });
 
 	function handleSelect(event) {
 		setSlug(event.target.value);
-		console.log(`slug ${slug()}`);
+		console.log(`slug: ${slug()}`);
 	}
 	
 	// https://www.learnwithjason.dev/api/episode/lets-learn-solid-js
@@ -30,9 +30,9 @@ export default function Schedule() {
 				</For>
 			</select>	
 			<Suspense>
-				<Show when={episode()} fallback={<p>loading...</p>}>
+				<Show when={slug()} fallback={<p>loading...</p>}>
 					<section>
-						<h1>{episode().title}</h1>
+						<h1>{slug()}</h1>
 					</section>
 				</Show>
 			</Suspense>
